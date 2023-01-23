@@ -1,0 +1,26 @@
+#game {
+    width: 460px;;
+    height:460px;
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    border:5px solid darkorange;
+    border-radius: 12px;
+    background-color: antiquewhite;
+    box-sizing: content-box;
+
+}
+#game > img {
+    height:32.5%;
+    width: 32.5%;
+
+}
+
+[data-i="8"]{
+    visibility: hidden;
+}
+
+body {
+    background-color: darkgreen !important;
+}
+
