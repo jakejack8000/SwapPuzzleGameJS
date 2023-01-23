@@ -1,5 +1,5 @@
 #game {
-    width: 460px;;
+    width: 30%;;
     height:460px;
     display: flex;
     flex-wrap:wrap;
@@ -11,8 +11,8 @@
 
 }
 #game > img {
-    height:32.5%;
-    width: 32.5%;
+    height:32.9%;
+    width: 32.9%;
 
 }
 
