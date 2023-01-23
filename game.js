@@ -1,6 +1,8 @@
 
 // Write Javascript code!
 const game = document.getElementById('game');
+const newGameBtn = document.getElementById('newGame');
+const hintBtn = document.getElementById('hint')
 var dataURL
 var image = new Image()
 var imageArray = []
@@ -8,17 +10,32 @@ var currentImageArray = []
 var hintClicked = false
 const correctArray = [[0,1,2],[3,4,5],[6,7,8]]
 let currentGameArray = []
-
-fetch('https://picsum.photos/600').then((d)=>d.blob()).then((imageBlob)=>{
+function newGame (){
+    game.innerHTML = `
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+<p class="text-muted m-3">LOADING ...</p>`
+    newGameBtn.disabled = true
+    hintBtn.disabled = true
+image = new Image()
+ imageArray = []
+ currentImageArray = []
+ hintClicked = false
+ currentGameArray = []
+startGame()
+}
+startGame()
+function startGame(){
+    fetch('https://picsum.photos/600').then((d)=>d.blob()).then((imageBlob)=>{
      dataURL = URL.createObjectURL(imageBlob);
      console.log(dataURL)
      image.src = dataURL
      image.crossOrigin = "*"
      console.log(image)
      image.onload = appendImagesToArrayAndStartGame
-    
 })
-
+}
 
 
 
@@ -103,7 +120,8 @@ function appendImagesToArrayAndStartGame(){
     }
     console.log(currentGameArray)
     drawBoard(currentGameArray)
-    document.getElementById('hint').disabled = false
+    hintBtn.disabled = false
+    newGameBtn.disabled = false
 }
 
 function drawBoard(){
@@ -133,7 +151,7 @@ function shuffleArray(array) {
 
 function hint(){
     hintClicked = true
-    document.getElementById('hint').disabled = true
+    hintBtn.disabled = true
 
     const tmp = currentGameArray
     currentGameArray = correctArray
@@ -142,7 +160,7 @@ function hint(){
         currentGameArray = tmp
         drawBoard()
         hintClicked = false
-        document.getElementById('hint').disabled = false
+        hintBtn.disabled = false
     },1000)
 }
      
