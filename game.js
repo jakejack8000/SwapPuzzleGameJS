@@ -39,22 +39,6 @@ function startGame(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function handleClick(clickedIndex){
     if(hintClicked){return}
     const [x,y] = searchIndex(clickedIndex)
@@ -100,6 +84,7 @@ function checkWin(){
     game.innerHTML = '<h1 class="text-warning">YOU WON !!!!</h1>'
     setTimeout(()=>{drawBoard()},2000)
     hintClicked = true
+    hintBtn.disabled = true
     
 }
 
