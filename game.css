@@ -24,3 +24,8 @@ body {
     background-color: darkgreen !important;
 }
 
+@media only screen and (max-width:500px)  {
+    #game{
+        width: 98%;
+    }
+}
