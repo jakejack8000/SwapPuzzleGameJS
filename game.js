@@ -99,6 +99,7 @@ function checkWin(){
 
     game.innerHTML = '<h1 class="text-warning">YOU WON !!!!</h1>'
     setTimeout(()=>{drawBoard()},2000)
+    hintClicked = true
     
 }
 
