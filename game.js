@@ -156,7 +156,6 @@ function hint(){
 
 function getInvCount(arr)
 {
-    console.log(arr)
     let inv_count = 0 ;
     for(let i=0;i<2;i++){
         for(let j=i+1;j<3;j++){
@@ -172,8 +171,6 @@ function getInvCount(arr)
 // if given 8 puzzle is solvable.
 function checkIfSolvable(puzzle)
 {
-    console.log('checking')
-    console.log(puzzle)
     // Count inversions in given 8 puzzle
     let invCount = getInvCount(puzzle);
     // return true if inversion count is even.
