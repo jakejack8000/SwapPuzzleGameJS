@@ -5,6 +5,7 @@ const newGameBtn = document.getElementById('newGame');
 const hintBtn = document.getElementById('hint')
 var dataURL
 var image = new Image()
+image.classList.add('w-100','h-100','rounded')
 var imageArray = []
 var currentImageArray = []
 var hintClicked = false
@@ -141,13 +142,9 @@ function shuffleArray(array) {
 function hint(){
     hintClicked = true
     hintBtn.disabled = true
-    game.classList.add('flex-column')
-    const tmp = currentGameArray
-    currentGameArray = correctArray
-    drawBoard()
+   
+    game.innerHTML = image.outerHTML
     setTimeout(()=>{
-        currentGameArray = tmp
-        game.classList.remove('flex-column')
         drawBoard()
         hintClicked = false
         hintBtn.disabled = false
