@@ -29,10 +29,8 @@ startGame()
 function startGame(){
     fetch('https://picsum.photos/600').then((d)=>d.blob()).then((imageBlob)=>{
      dataURL = URL.createObjectURL(imageBlob);
-     console.log(dataURL)
      image.src = dataURL
      image.crossOrigin = "*"
-     console.log(image)
      image.onload = appendImagesToArrayAndStartGame
 })
 }
@@ -42,17 +40,14 @@ function startGame(){
 function handleClick(clickedIndex){
     if(hintClicked){return}
     const [x,y] = searchIndex(clickedIndex)
-    const [zeroX,zeroY] = searchIndex(8)
+    const [zeroX,zeroY] = searchIndex(0)
     if(((Math.abs(zeroX-x)===1 && Math.abs(zeroY-y)===0)
     ||
     (Math.abs(zeroX-x)===0 && Math.abs(zeroY-y)===1)
     )){
-        console.log([x,y])
-        console.log([zeroX,zeroY])
         const val = currentGameArray[x][y]
         currentGameArray[zeroX][zeroY] = val
-        currentGameArray[x][y] = 8
-        console.log(currentGameArray)
+        currentGameArray[x][y] = 0
         drawBoard()
         checkWin()
 
@@ -98,13 +93,21 @@ function appendImagesToArrayAndStartGame(){
             imageArray.push(clipURL)
         }
     }
-    console.log(imageArray)
      imageArray = imageArray.map((url,i)=>`<img onclick="handleClick(${i})" data-i="${i}" src="${url}"/>`)
-    const randomArray = shuffleArray([0,1,2,3,4,5,6,7,8])
-    for(let i=0;i<3;i++){
-        currentGameArray.push(randomArray.slice(i*3,i*3+3))
-    }
-    console.log(currentGameArray)
+    let randomArray
+    
+    let arraySolvable = false
+    do{
+        randomArray=shuffleArray([0,1,2,3,4,5,6,7,8])
+        currentGameArray = []
+        for(let i=0;i<3;i++){
+            currentGameArray.push(randomArray.slice(i*3,i*3+3))
+        }
+        arraySolvable = checkIfSolvable(currentGameArray)
+        }
+        while(!arraySolvable)
+
+    
     drawBoard(currentGameArray)
     hintBtn.disabled = false
     newGameBtn.disabled = false
@@ -149,5 +152,30 @@ function hint(){
         hintBtn.disabled = false
     },1000)
 }
-     
-     
+    
+
+function getInvCount(arr)
+{
+    console.log(arr)
+    let inv_count = 0 ;
+    for(let i=0;i<2;i++){
+        for(let j=i+1;j<3;j++){
+         
+            // Value 0 is used for empty space
+            if (arr[j][i] > 0 && arr[j][i] > arr[i][j])
+                inv_count += 1;
+        }
+     }
+    return inv_count;
+}
+// This function returns true
+// if given 8 puzzle is solvable.
+function checkIfSolvable(puzzle)
+{
+    console.log('checking')
+    console.log(puzzle)
+    // Count inversions in given 8 puzzle
+    let invCount = getInvCount(puzzle);
+    // return true if inversion count is even.
+    return (invCount % 2 == 0);
+}
