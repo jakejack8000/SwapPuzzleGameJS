@@ -20,6 +20,7 @@ function newGame (){
     newGameBtn.disabled = true
     hintBtn.disabled = true
 image = new Image()
+image.classList.add('w-100','h-100','rounded')
  imageArray = []
  currentImageArray = []
  hintClicked = false
