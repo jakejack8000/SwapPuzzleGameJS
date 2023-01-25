@@ -9,7 +9,7 @@ image.classList.add('w-100','h-100','rounded')
 var imageArray = []
 var currentImageArray = []
 var hintClicked = false
-const correctArray = [[0,1,2],[3,4,5],[6,7,8]]
+const correctArray = [[0,3,6],[1,4,7],[2,5,8]]
 let currentGameArray = []
 function newGame (){
     game.innerHTML = `
