@@ -1,6 +1,6 @@
 #game {
     width: 30%;;
-    height:460px;
+    height:60%;
     display: flex;
     flex-wrap:wrap;
     flex-direction:column;
@@ -16,7 +16,7 @@
 
 }
 
-[data-i="8"]{
+[data-i="0"]{
     visibility: hidden;
 }
 
