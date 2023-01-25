@@ -50,8 +50,8 @@ function handleClick(clickedIndex){
         currentGameArray[x][y] = 0
         drawBoard()
         checkWin()
-
     }
+    console.log(currentGameArray)
     
 }
 
@@ -141,12 +141,13 @@ function shuffleArray(array) {
 function hint(){
     hintClicked = true
     hintBtn.disabled = true
-
+    game.classList.add('flex-column')
     const tmp = currentGameArray
     currentGameArray = correctArray
     drawBoard()
     setTimeout(()=>{
         currentGameArray = tmp
+        game.classList.remove('flex-column')
         drawBoard()
         hintClicked = false
         hintBtn.disabled = false
@@ -171,8 +172,11 @@ function getInvCount(arr)
 // if given 8 puzzle is solvable.
 function checkIfSolvable(puzzle)
 {
+    console.log('checking')
+    console.log(puzzle)
     // Count inversions in given 8 puzzle
     let invCount = getInvCount(puzzle);
+    console.log(invCount)
     // return true if inversion count is even.
     return (invCount % 2 == 0);
 }
