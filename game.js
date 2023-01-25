@@ -52,7 +52,6 @@ function handleClick(clickedIndex){
         drawBoard()
         checkWin()
     }
-    console.log(currentGameArray)
     
 }
 
@@ -169,11 +168,9 @@ function getInvCount(arr)
 // if given 8 puzzle is solvable.
 function checkIfSolvable(puzzle)
 {
-    console.log('checking')
-    console.log(puzzle)
+   
     // Count inversions in given 8 puzzle
     let invCount = getInvCount(puzzle);
-    console.log(invCount)
     // return true if inversion count is even.
     return (invCount % 2 == 0);
 }
